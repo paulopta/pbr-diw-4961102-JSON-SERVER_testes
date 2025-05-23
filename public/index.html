@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON SERVER - Testes</title>
+    <link rel="icon" href="../assets/img/logo_pucminas.png" type="image/png">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../assets/js/bootstrap.bundle.min.js" ></script>        
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <img src="../assets/img/image.png" class="img-fluid">   
+            </div>
+            <div class="col-9 text-center my-4 text-success">
+                <h1>Exercício Prático - JSON SERVER</h1>
+                <h3>Desenvolvimento de Interfaces WEB - Sistemas de Informação</h3>
+                <h3>Prof. Me. Paulo Henrique Rodrigues</h3>                
+            </div>
+        </div>    
+    </div>
+    <div class="container">
+        <div class="row bg-primary-subtle">
+            <h2 class="text-center"> Instruções</h2>
+            <p> O objetivo desta tarefa é criar um software em plataforma web que tem a funcionalidade de registrar os livros que o usuário leu. </p>
+            <p> Para tal ela se vale de um banco de dados baseado em um arquivo JSON (assets/db/livros.json) que armazena as informações de id, título, ano e autor. </p>
+            <p> Finalize a implementação do software desenvolvendo essas três tarefas: </p>
+            <p> 1) Crie uma função que liste todos os livros lidos e exiba na página. </p>
+            <p> 2) Crie uma função que permita o cadastro de um novo livro na base de dados. </p>
+            <p> 3) Crie uma função que permita receba um id de livro como parâmetro e faça a exclusão do mesmo. </p>
+            <p> 4) Crie uma ligação (link) da lista de livros para a página detalhes.html de forma que a página de detalhes receba o id do livro pelo método GET e ele seja buscado nos arquivos JS. </p>
+            <p> <b>Exemplos de trechos de códigos:</b> </p>            
+            <div class="col-12">
+                <div class="col-6 col-xs-6" style="float: left;">
+                    <p><b>Leitura</b></p>
+            <p>var xhttp = new XMLHttpRequest();<br>
+            xhttp.onreadystatechange = function() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (this.readyState == 4 && this.status == 200) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var json = JSON.parse(xhttp.responseText);<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("demo").innerHTML = json;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                };<br>                
+                xhttp.open("GET", "http://localhost:3000/jogos", true);<br>
+                xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');<br/>
+                xhttp.send(); 
+            </p>
+            
+                </div>    
+                <div class="col-6 col-xs-6" style="float: left;">
+                    <p><b>Gravação / Escrita</b></p>
+            <p>                
+                const json = { <br>
+                    &nbsp;&nbsp;&nbsp;email: 'eve.holt@reqres.in',<br>
+                    &nbsp;&nbsp;&nbsp;password: 'cityslicka'<br>
+                }<br>
+
+                var xhttp = new XMLHttpRequest();<br>
+            xhttp.onreadystatechange = function() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (this.readyState == 4 && this.status == 201) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(JSON.parse(xhttp.responseText));<br>                        
+                &nbsp;&nbsp;&nbsp;&nbsp;}else{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(`Error: ${xhttp.status}`);<br>                        
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                };<br>                
+                xhttp.open("POST", "http://localhost:3000/things", true);<br>
+                xhttp.setRequestHeader('Content-Type', 'application/json');<br>
+                xhttp.send(JSON.stringify(json));                     
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 col-xs-6" style="float: left;">
+                    <p><b>Exclusão</b></p>
+            <p>var id = 12;<br>        
+            var xhttp = new XMLHttpRequest();<br>
+            xhttp.onreadystatechange = function() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (this.readyState == 4 && this.status == 200) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Excluído com sucesso!");<br>                        
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                };<br>                
+                xhttp.open("DELETE", "http://localhost:3000/jogos/"+id, true);<br>
+                xhttp.send(null); 
+            </p>
+            
+                </div>
+            </div>                                        
+        </div>
+    </div>
+    <div class="container">
+        
+        <!-- Formulário de Gravação  -->
+        <div class="row my-4">
+            <h5> 2 - Receba dois valor do usuário, efetue o cálculo e mostre o resultado, de acordo com a operação selecionada.</h5>
+            <div class="row">
+                <div class="col-1">
+                  <label for="id" class="form-label">ID:</label> 
+                  <input type="number" id="id" class="form-control">
+                </div>
+                <div class="col-4">
+                    <label for="titulo" class="form-label">Título:</label> 
+                    <input type="text" id="titulo" class="form-control">
+                </div>
+                <div class="col-2">
+                    <label for="ano" class="form-label">Ano:</label> 
+                    <input type="number" id="ano" class="form-control">
+                </div>
+                <div class="col-3">
+                    <label for="autor" class="form-label">Autor:</label> 
+                    <input type="text" id="autor" class="form-control">
+                </div>
+                 <div class="col-1">
+                    <br/>
+                    <button type="button" id="btnGravar" class="btn btn-primary">Gravar</button>
+                  </div>
+                <div class="col-12">
+                    <br/>
+                    <span id="res2"> <span id="livros"></span> Exemplo de Listagem de Livros Cadastrados </span>
+                        <div class="row">
+                <div class="col-12">
+                    <ul class="list-group">
+                        <li class="list-group-item"> <a href="opcoes.html?id=1"> 1 - Aventura</a></li>
+                        <li class="list-group-item"> <a href="opcoes.html?id=2">2 - Luta</a></li>
+                        <li class="list-group-item"> <a href="opcoes.html?id=3">3 - Corrida</a></li>
+                        <li class="list-group-item"> <a href="opcoes.html?id=4">4 - Esportes</a></li>
+                        <li class="list-group-item"> <a href="opcoes.html?id=5">5 - RPG</a></li>
+                      </ul>
+                </div>                                
+            </div>
+        </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+    </div>
+</body>
+
+<script src="../assets/js/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</html>

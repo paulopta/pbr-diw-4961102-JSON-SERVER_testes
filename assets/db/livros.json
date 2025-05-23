@@ -1,0 +1,16 @@
+{
+  "livros": [
+    {
+      "id": "1",
+      "titulo": "O Retrato de Doryan Gray",
+      "autor": "Oscar Wilde",
+      "ano": "1998"
+    },
+    {
+      "id": "2",
+      "titulo": "Vigiar e Punir",
+      "autor": "Michael Focault",
+      "ano": "2025"
+    }
+  ]
+}
